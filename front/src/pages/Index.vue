@@ -1,22 +1,24 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
+  <q-page class="column items-center justify-evenly">
+    <ExampleComponent
       title="Example component"
       active
       :todos="todos"
       :meta="meta"
-    ></example-component>
+    ></ExampleComponent>
+    <q-btn to="/table" label="Table" outline color="purple" />
   </q-page>
 </template>
 
 <script lang="ts">
 import { Todo, Meta } from 'components/models'
 import ExampleComponent from 'components/CompositionComponent.vue'
+import ExampleTable from 'components/ExampleTable.vue'
 import { defineComponent, ref } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { ExampleComponent },
+  components: { ExampleComponent, ExampleTable },
   setup () {
     const todos = ref<Todo[]>([
       {

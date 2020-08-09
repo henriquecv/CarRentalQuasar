@@ -1,51 +1,24 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
-      <q-icon :name="icon" />
-    </q-item-section>
-
-    <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>
-        {{ caption }}
-      </q-item-label>
-    </q-item-section>
-  </q-item>
+  <div class="q-pa-md">
+    <div class="q-gutter-sm">
+      <q-checkbox v-model="checked" :label="side_label" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-
+import { defineComponent, ref } from '@vue/composition-api'
 export default defineComponent({
   name: 'EssentialLink',
   props: {
-    title: {
-      type: String,
-      required: true
-    },
-
-    caption: {
-      type: String,
-      default: ''
-    },
-
-    link: {
+    side_label: {
       type: String,
       default: '#'
-    },
-
-    icon: {
-      type: String,
-      default: ''
     }
-  }
+  },
+  setup (props) {
+    const checked = ref(false)
+    return { checked }
+  },
 })
 </script>
