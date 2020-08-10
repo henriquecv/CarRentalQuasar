@@ -14,7 +14,7 @@
         <q-toolbar-title>
           <router-link to='/' id='title'>
             Car Rental
-          </router-link to='/'>
+          </router-link>
         </q-toolbar-title>
         
 
