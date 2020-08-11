@@ -1,56 +1,19 @@
 <template>
-  <div class="q-pa-md">
+  <div>
+    <q-btn label="TESTE" color="primary" @click="getCars()"/>
     <q-markup-table>
       <thead>
         <tr>
-          <th class="text-left">Dessert (100g serving)</th>
-          <th class="text-right">Calories</th>
-          <th class="text-right">Fat (g)</th>
-          <th class="text-right">Carbs (g)</th>
-          <th class="text-right">Protein (g)</th>
-          <th class="text-right">Sodium (mg)</th>
+          <th class="text-center">Model</th>
+          <th class="text-center">Brand</th>
+          <th class="text-center">Category</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="text-left">Frozen Yogurt</td>
-          <td class="text-right">159</td>
-          <td class="text-right">6</td>
-          <td class="text-right">24</td>
-          <td class="text-right">4</td>
-          <td class="text-right">87</td>
-        </tr>
-        <tr>
-          <td class="text-left">Ice cream sandwich</td>
-          <td class="text-right">237</td>
-          <td class="text-right">9</td>
-          <td class="text-right">37</td>
-          <td class="text-right">4.3</td>
-          <td class="text-right">129</td>
-        </tr>
-        <tr>
-          <td class="text-left">Eclair</td>
-          <td class="text-right">262</td>
-          <td class="text-right">16</td>
-          <td class="text-right">23</td>
-          <td class="text-right">6</td>
-          <td class="text-right">337</td>
-        </tr>
-        <tr>
-          <td class="text-left">Cupcake</td>
-          <td class="text-right">305</td>
-          <td class="text-right">3.7</td>
-          <td class="text-right">67</td>
-          <td class="text-right">4.3</td>
-          <td class="text-right">413</td>
-        </tr>
-        <tr>
-          <td class="text-left">Gingerbread</td>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
+        <tr v-for="car in filteredCars" :key="car">
+          <td class="text-center">{{ car.model }}</td>
+          <td class="text-center">{{ car.brand }}</td>
+          <td class="text-center">{{ car.category }}</td>
         </tr>
       </tbody>
     </q-markup-table>
@@ -63,15 +26,26 @@ import { defineComponent, PropType, computed, ref, toRef, Ref } from '@vue/compo
 import { Todo, Meta } from './models'
 import { createNamespacedHelpers } from 'vuex-composition-helpers'
 
-const { useState, useActions, useMutations } = createNamespacedHelpers('example')
+const { useState, useActions, useMutations, useGetters } = createNamespacedHelpers('car')
 
 export default defineComponent({
   name: 'ExampleTable',
   
   setup (props) {
-    const { count, prop } = useState(['count', 'prop'])
-    const { changeCount, changeProp } = useMutations(['changeCount', 'changeProp'])
-    return { count, prop, changeProp, changeCount }
+    const { cars, categories_filter, brands_filter } = useState(['cars', 'categories_filter', 'brands_filter'])
+    const { filteredCars } = useGetters(['filteredCars'])
+    const { getCars, soma, zeraCount } = useActions(['getCars', 'soma', 'zeraCount'])
+    const open = ref(true)
+    return { cars, categories_filter, brands_filter, open, filteredCars, getCars } 
   },
+  mounted () {
+    this.$store.dispatch('car/getCars')
+  }
 });
 </script>
+
+<style scoped>
+.text-center {
+  font-size: 22px;
+}
+</style>

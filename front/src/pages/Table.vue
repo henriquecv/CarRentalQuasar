@@ -1,6 +1,11 @@
 <template>
-  <q-page class="column items-center justify-evenly">
-    <example-table title="Example table" active/>
+  <q-page class="items-start q-pa-md">
+    <h2>Our garage</h2>
+    <div class="row">
+      <div class="col-9">
+        <example-table active/>
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -14,3 +19,10 @@ export default defineComponent({
   components: { ExampleTable },
 })
 </script>
+
+<style scoped>
+h2 {
+  font-weight: bold;
+  font-size: 38px;
+}
+</style>
