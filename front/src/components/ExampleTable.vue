@@ -1,6 +1,5 @@
 <template>
   <div>
-    <q-btn label="TESTE" color="primary" @click="getCars()"/>
     <q-markup-table>
       <thead>
         <tr>

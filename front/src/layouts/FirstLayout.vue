@@ -18,9 +18,9 @@
     <q-drawer show-if-above v-model="left" side="left" bordered>
       <q-list>
         <q-item-label header class="text-gray-8">Categories</q-item-label>
-        <EssentialLink v-for="category in categoriesGetter" :key="category" v-bind:side_label="category"/>
+        <EssentialLink v-for="category in categoriesGetter" :key="category" v-bind:side_label="category" name="category"/>
         <q-item-label header class="text-gray-8">Brands</q-item-label>
-        <EssentialLink v-for="brand in brandsGetter" :key="brand" v-bind:side_label="brand" />
+        <EssentialLink v-for="brand in brandsGetter" :key="brand" v-bind:side_label="brand" name="brand" />
       </q-list>
     </q-drawer>
 
